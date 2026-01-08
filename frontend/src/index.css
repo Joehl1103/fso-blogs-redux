@@ -1,0 +1,59 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    .btn {
+        @apply border-solid border-yellow-400 bg-amber-100
+    }
+
+    .input {
+        @apply border-solid border-green-500 bg-amber-100 placeholder:text-gray-500 placeholder:p-0.5  
+    }
+
+    .labelInputClass {
+        @apply flex flex-row gap-2
+    }
+
+    .header {
+        @apply pl-2
+        
+    }
+
+    .header-cell-left {
+        @apply px-6 py-3 text-center border-solid border-r-sky-500 border-l-0 border-t-0 border-b-sky-500
+    }
+
+    .header-cell-right {
+        @apply px-6 py-3 text-center border-solid border-r-0 border-l-0 border-t-0 border-b-sky-500
+    }
+
+    .body-cell-left {
+        @apply px-6 py-3 text-sm before:content-['\01F517']  border-solid border-r-sky-300 border-b-sky-200 border-l-0  border-t-0
+    }
+    
+    .body-cell-left a {
+        @apply hover:text-red-600 underline text-stone-700
+    }
+
+    .body-cell-right {
+        @apply px-6 py-3 text-sm border-solid text-right border-r-0 border-b-sky-200 border-l-0 border-t-0
+    }
+
+    .link a {
+        @apply before:content-['\01F517'] hover:text-red-600 underline text-stone-700
+    }
+
+    .notification-container {
+        @apply flex flex-col items-center
+    }
+
+    .notification-success {
+        @apply bg-emerald-500 m-1 mt-4 text-center w-40 pt-5px pb-5px text-sm
+    }
+
+    .notification-failure {
+        @apply bg-red-500 m-1 mt-25px text-center w-60 pt-5px pb-5px text-sm
+    }
+
+}

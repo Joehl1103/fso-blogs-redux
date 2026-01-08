@@ -1,0 +1,21 @@
+{
+  "name": "plawright-testing",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx playwright test tests/blog_app.spec.js --project=chromium",
+    "test:ui": "npx playwright test tests/blog_app.spec.js --ui --project=chromium"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "@playwright/test": "^1.54.1",
+    "@types/node": "^24.0.15"
+  },
+  "dependencies": {
+    "playwright": "^1.55.0"
+  }
+}

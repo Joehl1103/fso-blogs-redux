@@ -1,0 +1,46 @@
+{
+  "name": "blog-list-application",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "NODE_ENV=test node --watch --test",
+    "test:blog": "NODE_ENV=test node --test tests/blog_api.test.js",
+    "test:only:blog": "NODE_ENV=test node --test --test-only tests/blog_api.test.js",
+    "test:users": "NODE_ENV=test node --test tests/user_api.test.js",
+    "test:only:users": "NODE_ENV=test node --test --test-only tests/user_api.test.js",
+    "test:login": "NODE_ENV=test node --test tests/login_api.test.js",
+    "test:only:login": "NODE_ENV=test node --test --test-only tests/login_api.test.js",
+    "test:testing": "NODE_ENV=test node --test tests/testing_api.test.js",
+    "test:only:testing": "NODE_ENV=test node --test --test-only tests/testing_api.test.js",
+    "start": "NODE_ENV=production node index.js",
+    "start:test": "NODE_ENV=test node --watch index.js",
+    "start:test:playwright": "NODE_ENV=test node index.js",
+    "dev": "NODE_ENV=development node --watch index.js",
+    "prettier-watch": "onchange \"**/*\" -- prettier --write --ignore-unknown {{changed}}"
+  },
+  "repository": {
+    "type": "git",
+    "url": "FullStackOpen-Joehl1103"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@eslint/js": "^9.27.0",
+    "bcrypt": "^6.0.0",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "lodash": "^4.17.21",
+    "mongodb": "^6.16.0",
+    "mongoose": "^8.15.1",
+    "onchange": "^7.1.0",
+    "supertest": "^7.1.1"
+  },
+  "devDependencies": {
+    "@stylistic/eslint-plugin": "^4.4.0",
+    "eslint": "^9.27.0",
+    "globals": "^16.2.0",
+    "prettier": "3.6.2"
+  }
+}
