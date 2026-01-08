@@ -5,16 +5,15 @@ import { Link } from 'react-router-dom'
 const User = () => {
     const userId = useParams().id   
     const users = useSelector(state => state.users)
-    if(!users){
-        return <>...loading users</>
-    }
-    const user = users.filter(u => u._id === userId)[0]
     const blogs = useSelector(state => state.blogs)
+
+    if(!users || !blogs){
+        return <>...loading</>
+    }
+
+    const user = users.filter(u => u._id === userId)[0]
     const userBlogs = blogs.filter(b => b.user._id === userId)
     console.log('blogs in User',blogs)
-    if(!blogs){
-        return <>...loading blogs</>
-    }
     console.log('user in User',user)
     return (
         <>

@@ -2,10 +2,9 @@ import { useEffect } from "react";
 import BlogDisplay from "./components/blog-components/BlogDisplay";
 import Blog from './components/blog-components/Blog'
 import LoginForm from "./components/LoginForm";
-import NotificationDisplay from "./components/NotificationDisplay";
 import { useSelector, useDispatch } from 'react-redux'
 import { setLoggedinUserState, logoutAndClearLoggedinUser } from "./reducers/loggedinUserSlice"
-import { Routes, Route, useNavigate, Navigate } from 'react-router-dom'
+import { Routes, Route, Navigate } from 'react-router-dom'
 import { initializeUsers } from "./reducers/usersSlice";
 import { initializeBlogs } from "./reducers/blogSlice";
 import UserView from './components/users/UserView'

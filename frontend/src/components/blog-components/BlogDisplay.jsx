@@ -1,15 +1,11 @@
-import { useEffect } from "react";
 import BlogForm from "./BlogForm";
 import Togglable from "../Togglable";
 import { useSelector } from "react-redux";
 import { Link } from 'react-router-dom'
 import NotificationDisplay from "../NotificationDisplay";
 
-const BlogDisplay = ({ }) => {
+const BlogDisplay = () => {
   const blogs = useSelector(state => state.blogs)
-
-  useEffect(() => {
-  }, [])
 
   return (
     <div>

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { EyeInvisibleOutlined, EyeOutlined } from "@ant-design/icons";
 
-export default function PasswordInput({ password, setPassword, labelInputClass }) {
+export default function PasswordInput({ password, setPassword }) {
   const [visible, setVisible] = useState(false);
 
   return (

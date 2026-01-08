@@ -1,40 +1,59 @@
-import { render, screen, fireEvent } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
-import blogService from "../../services/blogs";
-import BlogForm from "./BlogForm";
-import { useState } from "react";
+import { test, expect, vi } from 'vitest'
+import { render, fireEvent, screen } from '@testing-library/react'
+import { Provider } from 'react-redux'
+import { configureStore } from '@reduxjs/toolkit'
 
-test("", async () => {
-  const mockHandlerCreateBlog = vi.fn();
+import BlogForm from './BlogForm'
+import blogInfoReducer from '../../reducers/blogInfoSlice.js'
+import tokenReducer from '../../reducers/tokenSlice.js'
 
-  function TestWrapper() {
-    const [title, setTitle] = useState("");
-    const [author, setAuthor] = useState("");
-    const [url, setUrl] = useState("");
-    return (
-      <BlogForm
-        title={title}
-        setTitle={setTitle}
-        author={author}
-        setAuthor={setAuthor}
-        url={url}
-        setUrl={setUrl}
-        createBlog={mockHandlerCreateBlog}
-      />
-    );
+vi.mock('../../reducers/blogSlice.js', async () => {
+  return {
+    addBlog: vi.fn(() => ({ type: 'blogs/addBlogMock' }))
   }
+})
 
-  let container = render(<TestWrapper />).container;
+vi.mock('../../reducers/notificationSlice.js', async () => {
+  return {
+    setNotificationAndTimeout: vi.fn(() => ({ type: 'notification/mock' }))
+  }
+})
 
-  const user = userEvent.setup();
-  await user.type(container.querySelector("#title"), "Title");
-  await user.type(container.querySelector("#author"), "Author");
-  await user.type(container.querySelector("#url"), "url");
+test('submitting the blog form dispatches addBlog with entered fields', async () => {
+  const blogSlice = await import('../../reducers/blogSlice.js')
+  const store = configureStore({
+    reducer: {
+      blogInfo: blogInfoReducer,
+      token: tokenReducer,
+    },
+    preloadedState: {
+      blogInfo: { title: '', author: '', url: '' },
+      token: 'Bearer token',
+    }
+  })
 
-  const form = container.querySelector("form");
-  fireEvent.submit(form);
+  render(
+    <Provider store={store}>
+      <BlogForm />
+    </Provider>
+  )
 
-  expect(mockHandlerCreateBlog).toHaveBeenCalledTimes(1);
+  fireEvent.change(screen.getByTestId('title'), { target: { value: 'Title' } })
+  fireEvent.change(screen.getByTestId('author'), { target: { value: 'Author' } })
+  fireEvent.change(screen.getByTestId('url'), { target: { value: 'url' } })
 
-  expect(mockHandlerCreateBlog).toHaveBeenCalledWith("Title", "Author", "url");
-});
+  const submitButton = screen.getByTestId('createBlogButton')
+  fireEvent.submit(submitButton.closest('form'))
+
+  expect(blogSlice.addBlog).toHaveBeenCalledTimes(1)
+  expect(blogSlice.addBlog).toHaveBeenCalledWith(
+    {
+      title: 'Title',
+      author: 'Author',
+      url: 'url',
+      likes: 0,
+      user: null,
+    },
+    'Bearer token'
+  )
+})

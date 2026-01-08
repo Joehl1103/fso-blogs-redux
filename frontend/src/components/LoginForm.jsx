@@ -1,7 +1,7 @@
 import { useState } from "react";
 import PasswordInput from "./PasswordInput";
 import { setNotificationAndTimeout } from "../reducers/notificationSlice";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { loginAndSetLoggedinUser } from '../reducers/loggedinUserSlice.js'
 import { setTimeoutForLogout } from "../utils/helper.js";
 import { useNavigate } from 'react-router'

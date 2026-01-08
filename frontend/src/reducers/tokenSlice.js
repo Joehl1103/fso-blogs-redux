@@ -4,10 +4,10 @@ export const tokenSlice = createSlice({
     name: 'token',
     initialState: null,
     reducers: {
-        setToken: (state,action) => {
+        setToken: (_state, action) => {
             return `Bearer ${action.payload}`
         },
-        clearToken: (state,action) => {
+        clearToken: () => {
             return null
         }
     }

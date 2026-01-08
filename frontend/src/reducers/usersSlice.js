@@ -1,6 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
 import userService from '../services/usersService'
-import { unstable_routeRSCServerRequest } from 'react-router-dom'
 
 export const usersSlice = createSlice({
     name: 'users',

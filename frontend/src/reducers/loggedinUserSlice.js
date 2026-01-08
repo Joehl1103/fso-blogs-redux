@@ -11,7 +11,7 @@ export const userSlice = createSlice({
     id: ''
   },
   reducers: {
-    getLoggedinUserState: (state, action) => {
+    getLoggedinUserState: (state) => {
       return state
     },
     setLoggedinUserState: (state, action) => {
@@ -22,7 +22,7 @@ export const userSlice = createSlice({
       state.id = pl.id
       return state
     },
-    clearLoggedinUserState: (state, action) => {
+    clearLoggedinUserState: (state) => {
       state.token = ''
       state.username = ''
       state.name = ''

@@ -12,17 +12,12 @@ import { Link } from 'react-router-dom'
 const Blog = ({
   loggedinUser,
 }) => {
-  if(loggedinUser.token.length === 0){
-    return <RootRedirect loggedinUser={loggedinUser}/>
-  }
   const blogId = useParams().id
   const blogs = useSelector(state => state.blogs)
-  const blog = blogs.filter(b => b.id === blogId)[0]
   const users = useSelector(state => state.users)
   const token = useSelector(state => state.token)
-  console.log('token',token)
-  const [refreshTrigger, setRefreshTrigger] = useState(0)
 
+  const [refreshTrigger, setRefreshTrigger] = useState(0)
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
@@ -35,13 +30,25 @@ const Blog = ({
     return comms
   }
   useEffect(() => {
+    if (loggedinUser.token.length === 0) {
+      return
+    }
     getAllCommentsAndFilterById(blogId)
       .then(r => {
         setBlogComments(r)
       })
-  },[refreshTrigger])
+  }, [blogId, loggedinUser.token, refreshTrigger])
 
-  if(users.length === 0 || !blogs ){
+  if (loggedinUser.token.length === 0) {
+    return <RootRedirect loggedinUser={loggedinUser} />
+  }
+
+  if (!users || users.length === 0 || !blogs) {
+    return <div>...loading</div>
+  }
+
+  const blog = blogs.filter(b => b.id === blogId)[0]
+  if (!blog) {
     return <div>...loading</div>
   }
 
