@@ -20,7 +20,7 @@ const LoginForm = () => {
       setTimeoutForLogout()
       navigate('/blogs')
     } catch (e) {
-      console.log(`Error ${e.message}`);
+      console.error('Login failed:', e)
       dispatch(setNotificationAndTimeout("error", "wrong username or password", 5000))
     }
   }

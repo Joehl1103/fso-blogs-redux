@@ -33,7 +33,7 @@ const createBlog = async (blogInfo, token) => {
     );
     return response.data;
   } catch (e) {
-    console.log(`Error ${e.message}`);
+    console.error('Failed to create blog:', e);
   }
 };
 
@@ -48,7 +48,7 @@ const deleteBlog = async (id, token) => {
     );
     return response.data;
   } catch (e) {
-    console.log(`Error: ${e.message}`);
+    console.error('Failed to delete blog:', e);
   }
 };
 
@@ -65,7 +65,7 @@ const updateBlog = async (blogObject, id, token) => {
     );
     return response.data;
   } catch (e) {
-    console.log(`Error: ${e.message}`);
+    console.error('Failed to update blog:', e);
   }
 };
 

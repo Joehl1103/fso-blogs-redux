@@ -13,8 +13,6 @@ const User = () => {
 
     const user = users.filter(u => u._id === userId)[0]
     const userBlogs = blogs.filter(b => b.user._id === userId)
-    console.log('blogs in User',blogs)
-    console.log('user in User',user)
     return (
         <>
          <h2 className="header">User</h2>

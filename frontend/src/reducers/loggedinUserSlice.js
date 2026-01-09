@@ -49,7 +49,6 @@ export const loginAndSetLoggedinUser = (username, password) => {
 
 export const logoutAndClearLoggedinUser = () => {
   return async dispatch => {
-    console.warn('LET ME KNOW WHEN LOCALSTORAGE IS BEING CLEARED')
     localStorage.clear()
     dispatch(clearLoggedinUserState())
     dispatch(clearToken())

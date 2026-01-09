@@ -83,7 +83,7 @@ const Blog = ({
       setRefreshTrigger(prev => prev + 1)
       dispatch(setNotificationAndTimeout('success','Comment added',5000))
     } catch (e) {
-      console.error('Something went wrong while creating comment',e.message)
+      console.error('Failed to create comment:', e)
     }
   }
 
@@ -99,11 +99,9 @@ const Blog = ({
       setRefreshTrigger(prev => prev + 1)
       dispatch(setNotificationAndTimeout('success','Comment deleted',5000))
     } catch (e) {
-      console.error(`Something went wrong while deleting comment: ${e.message}`)
+      console.error('Failed to delete comment:', e)
     }
   }
-
-  console.log('blogUser',blogUser)
 
   return (
     <div>

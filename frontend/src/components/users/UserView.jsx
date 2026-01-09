@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 
 const UserView = () => {
     const users = useSelector(state => state.users)
-    console.log('users',users)
  return (
     <div className="relative overflow-x-auto flex-col justify-items-center mt-5">
         <table className="border-collapse ">

@@ -36,7 +36,6 @@ export const { setBlogs, newBlog, plusLike, delBlog } = blogSlice.actions
 export const initializeBlogs = () => {
   return async dispatch => {
     const blogs = await blogService.getAll()
-    // console.log('blogs in initializeBlogs', blogs)
     blogs.sort(reverse);
     dispatch(setBlogs(blogs))
   }

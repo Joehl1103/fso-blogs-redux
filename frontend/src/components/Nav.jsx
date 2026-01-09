@@ -18,7 +18,6 @@ const Nav = ({ loggedinUser }) => {
 
     const handleNavVisibility = () => {
         setNavVisibility(!navVisibility)
-        console.warn(navVisibility)
       }
 
     const navClassName = navVisibility ? 'flex flex-row gap-4 bg-red-300 p-1' : 'flex flex-row bg-red-300 gap-4 p-1'

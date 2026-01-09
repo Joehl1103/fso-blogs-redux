@@ -28,24 +28,19 @@ describe.skip("testing blog", () => {
   test("renders title and author by default", () => {
     // screen.debug()
     const element = screen.getByText("Title by Author");
-    // console.log('element',element)
     expect(element).toBeDefined();
-    // console.log('container',container)
     const details = container.querySelector(".details");
-    // console.log('details',details)
     expect(details).toHaveStyle("display: none");
   });
 
   test("renders author,url,likes when details are clicked", async () => {
     const button = screen.getByText("view details");
-    // console.log('button',button)
     // screen.debug()
     fireEvent.click(button);
 
     screen.debug();
 
     const details = container.querySelector(".details");
-    // console.log('details',details)
     expect(details).toHaveStyle("display: block");
     expect(screen.getByText(/Title by Author/)).toBeInTheDocument();
     expect(screen.getByText(/Author: Author/)).toBeInTheDocument();
@@ -61,12 +56,9 @@ describe.skip("testing blog", () => {
     fireEvent.click(detailsButton);
 
     const likeButton = screen.getByText("like");
-    // console.log('like button',likeButton)
     fireEvent.click(likeButton);
     fireEvent.click(likeButton);
-    console.log("mock handler calls", mockHandler.mock.calls);
-
-    screen.debug();
+    // screen.debug();
 
     expect(mockHandler.mock.calls).toHaveLength(2);
   });
