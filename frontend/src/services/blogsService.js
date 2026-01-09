@@ -1,7 +1,5 @@
 import axios from "axios";
 
-const baseUrl = "/api/blogs";
-
 axios.interceptors.response.use(
   (response) => response,
   (error) => {
@@ -18,16 +16,22 @@ axios.interceptors.response.use(
 );
 
 const getAll = async () => {
-  const response = await axios.get(baseUrl);
+  const response = await axios.get(
+    `${import.meta.env.VITE_API_BASE_URL ?? ""}/api/blogs`,
+  );
   return response.data
 };
 
-const createBlog = async (blogInfo,token) => {
+const createBlog = async (blogInfo, token) => {
   const config = {
     headers: { Authorization: token },
   };
   try {
-    const response = await axios.post(baseUrl, blogInfo, config);
+    const response = await axios.post(
+      `${import.meta.env.VITE_API_BASE_URL ?? ""}/api/blogs`,
+      blogInfo,
+      config,
+    );
     return response.data;
   } catch (e) {
     console.log(`Error ${e.message}`);
@@ -39,7 +43,10 @@ const deleteBlog = async (id, token) => {
     headers: { Authorization: token },
   };
   try {
-    const response = await axios.delete(`${baseUrl}/${id}`, config);
+    const response = await axios.delete(
+      `${import.meta.env.VITE_API_BASE_URL ?? ""}/api/blogs/${id}`,
+      config,
+    );
     return response.data;
   } catch (e) {
     console.log(`Error: ${e.message}`);
@@ -52,7 +59,11 @@ const updateBlog = async (blogObject, id, token) => {
     headers: { Authorization: token },
   };
   try {
-    const response = await axios.put(`${baseUrl}/${id}`, blogObject, config);
+    const response = await axios.put(
+      `${import.meta.env.VITE_API_BASE_URL ?? ""}/api/blogs/${id}`,
+      blogObject,
+      config,
+    );
     return response.data;
   } catch (e) {
     console.log(`Error: ${e.message}`);

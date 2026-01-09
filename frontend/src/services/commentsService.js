@@ -1,10 +1,9 @@
 import axios from 'axios'
-const baseUrl = '/api/comments'
 
 const getAllComments = async () => {
     let response = null
     try {
-        response = await axios.get(baseUrl)
+        response = await axios.get(`${import.meta.env.VITE_API_BASE_URL ?? ''}/api/comments`)
     } catch (e){
         console.error(`error while calling get all comments ${e.message}`)
     }
@@ -16,7 +15,7 @@ const createComment = async (commentObject,token) => {
         headers: { Authorization: token }
     }
 
-    const response = await axios.post(baseUrl,commentObject,config)
+    const response = await axios.post(`${import.meta.env.VITE_API_BASE_URL ?? ''}/api/comments`,commentObject,config)
     return response.data
 }
 
@@ -27,7 +26,7 @@ const deleteComment = async (id, token) => {
         headers: { Authorization: token }
     }
 
-    const response = await axios.delete(`${baseUrl}/${id}`,config)
+    const response = await axios.delete(`${import.meta.env.VITE_API_BASE_URL ?? ''}/api/comments/${id}`,config)
     return response.data
 }
 export default { getAllComments, createComment, deleteComment }

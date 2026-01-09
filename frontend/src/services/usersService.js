@@ -1,8 +1,7 @@
 import axios from "axios";
-const baseUrl = "/api/users";
 
 const getUsers = async () => {
-  const request = axios.get(baseUrl);
+  const request = axios.get(`${import.meta.env.VITE_API_BASE_URL ?? ""}/api/users`);
   return request.then((response) => response.data);
 };
 
