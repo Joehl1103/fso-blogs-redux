@@ -26,8 +26,10 @@ const Blog = ({
   
   const getAllCommentsAndFilterById = async (blogId) =>{
     const allComments = await commentsService.getAllComments()
-    const comms = allComments.length > 0 ? allComments.filter(c => c.blog?.id === blogId) : []
-    return comms
+    if (!Array.isArray(allComments) || allComments.length === 0) {
+      return []
+    }
+    return allComments.filter(c => c?.blog?.id === blogId)
   }
   useEffect(() => {
     if (loggedinUser.token.length === 0) {
@@ -36,6 +38,10 @@ const Blog = ({
     getAllCommentsAndFilterById(blogId)
       .then(r => {
         setBlogComments(r)
+      })
+      .catch((e) => {
+        console.error('Failed to load comments:', e)
+        setBlogComments([])
       })
   }, [blogId, loggedinUser.token, refreshTrigger])
 
@@ -81,6 +87,7 @@ const Blog = ({
     }
     try {
       await commentsService.createComment(commentObject,token)
+      setCommentValue('')
       setRefreshTrigger(prev => prev + 1)
       dispatch(setNotificationAndTimeout('success','Comment added',5000))
     } catch (e) {
