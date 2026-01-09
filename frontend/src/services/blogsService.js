@@ -7,7 +7,6 @@ axios.interceptors.response.use(
       error.response &&
       (error.response.status === 401 || error.response.status === 403)
     ) {
-      console.warn('LET ME KNOW WHEN LOCAL STORAGE IS BEING CLEARED')
       localStorage.removeItem('loggedinUser');
 
     }

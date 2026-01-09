@@ -1,5 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const cors = require("cors");
 const config = require("./utils/config");
 const blogRouter = require("./controllers/blogsController");
 const usersRouter = require("./controllers/usersController");
@@ -8,6 +9,32 @@ const commentsRouter = require('./controllers/commentController')
 const middleware = require("./utils/middleware");
 
 const app = express();
+
+const defaultAllowedOrigins = [
+  "http://localhost:3000",
+  "http://localhost:5173",
+];
+
+const envAllowedOrigins = (process.env.CORS_ORIGINS ?? "")
+  .split(",")
+  .map((s) => s.trim())
+  .filter(Boolean);
+
+const allowedOrigins = new Set([...defaultAllowedOrigins, ...envAllowedOrigins]);
+const allowVercelPreviews = process.env.CORS_ALLOW_VERCEL_PREVIEWS === "true";
+
+app.use(
+  cors({
+    origin: (origin, cb) => {
+      if (!origin) return cb(null, true);
+      if (allowedOrigins.has(origin)) return cb(null, true);
+      if (allowVercelPreviews && origin.endsWith(".vercel.app")) {
+        return cb(null, true);
+      }
+      return cb(new Error(`Not allowed by CORS: ${origin}`));
+    },
+  }),
+);
 
 const dbConnect = mongoose
   .connect(config.MONGODB_URI)

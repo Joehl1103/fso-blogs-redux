@@ -39,7 +39,6 @@ export const loginAndSetLoggedinUser = (username, password) => {
     try {
       user = await loginService.login({ username, password })
     } catch (e) {
-      console.warn('error while logging in')
       throw new Error(`error: ${e.message}`)
     }
     dispatch(setLoggedinUserState(user))
