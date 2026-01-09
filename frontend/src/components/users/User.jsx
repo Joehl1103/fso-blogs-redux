@@ -12,14 +12,14 @@ const User = () => {
     }
 
     const user = users.filter(u => u._id === userId)[0]
-    const userBlogs = blogs.filter(b => b.user._id === userId)
+    const userBlogs = blogs.filter(b => (typeof b.user === 'string' ? b.user : b.user?._id) === userId)
     return (
         <>
          <h2 className="header">User</h2>
             <div className="flex-col">
                 <ul>
-                    <li><u>Name:</u> {user.name}</li>
-                    <li><u>Username:</u> {user.username}</li>
+                    <li><u>Name:</u> {user?.name}</li>
+                    <li><u>Username:</u> {user?.username}</li>
                 </ul>
             </div>
          <h2 className="header">Added blogs</h2>

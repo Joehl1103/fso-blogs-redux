@@ -7,6 +7,11 @@ const getAllComments = async () => {
   } catch (e) {
     console.error('Failed to fetch comments:', e)
   }
+
+  if (!response) {
+    return []
+  }
+
   return response.data
 }
 
