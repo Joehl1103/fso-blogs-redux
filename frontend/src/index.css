@@ -56,4 +56,8 @@
         @apply bg-red-500 m-1 mt-25px text-center w-60 pt-5px pb-5px text-sm
     }
 
+    .demo-credentials {
+        @apply mt-4 px-4 py-2 border border-gray-300 rounded text-center bg-gray-50 max-w-fit
+    }
+
 }

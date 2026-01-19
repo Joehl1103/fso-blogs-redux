@@ -56,6 +56,11 @@ const LoginForm = () => {
           login
         </button>
       </form>
+      <div className="demo-credentials">
+        <p className="text-xs text-gray-600 mb-1">Demo credentials:</p>
+        <p className="text-xs"><span className="font-semibold">Username:</span> genericuser</p>
+        <p className="text-xs"><span className="font-semibold">Password:</span> Generic1!</p>
+      </div>
     </div>
     </div>
   );
