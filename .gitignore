@@ -2,3 +2,5 @@
 notes.md
 .env
 user-credentials.md
+.vercel
+.env*.local
