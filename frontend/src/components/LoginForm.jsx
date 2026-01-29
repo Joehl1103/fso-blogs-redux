@@ -11,10 +11,12 @@ const LoginForm = () => {
   const dispatch = useDispatch()
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
+  const [isLoading, setIsLoading] = useState(false)
   const navigate = useNavigate()
 
   const handleLogin = async (event) => {
     event.preventDefault();
+    setIsLoading(true)
     try {
       await dispatch(loginAndSetLoggedinUser(username, password))
       setTimeoutForLogout()
@@ -22,6 +24,8 @@ const LoginForm = () => {
     } catch (e) {
       console.error('Login failed:', e)
       dispatch(setNotificationAndTimeout("error", "wrong username or password", 5000))
+    } finally {
+      setIsLoading(false)
     }
   }
   return (
@@ -52,8 +56,8 @@ const LoginForm = () => {
             setPassword={setPassword} />
         </div>
         </div>
-        <button className="self-center btn" type="submit" data-testid="login-button">
-          login
+        <button className="self-center btn" type="submit" data-testid="login-button" disabled={isLoading}>
+          {isLoading ? 'Loading...' : 'login'}
         </button>
       </form>
       <div className="demo-credentials">
