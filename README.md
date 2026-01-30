@@ -1,4 +1,4 @@
-# Blog List Application
+# Redux Blog List Application
 
 🔗 **Live Demo:** [fso-blogs-redux.vercel.app](https://fso-blogs-redux.vercel.app/)
 
