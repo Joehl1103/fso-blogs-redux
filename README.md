@@ -86,6 +86,8 @@ The frontend runs on `http://localhost:5173` and proxies API requests to the bac
 
 ### Running Tests
 
+This project uses a layered testing approach: backend API tests run with Node's built-in test runner and Supertest, frontend component tests run with Vitest + Testing Library, and Playwright drives end-to-end coverage of key user flows like login and blog CRUD. Together, these cover core API behavior, UI interactions, and full-stack scenarios.
+
 **Backend API tests:**
 ```bash
 cd backend
